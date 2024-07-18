@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+hr {
+    border: 2px solid #7E9273;
+    border-radius: 8px;
+    width: 75%;
+    min-width: 600px;
+    margin-top: 0px;
+}
+
+body {
+  margin: 0px;
+}
+
+.navbar {
+  flex: 1;
+  margin-left: 15%;
+
+}
+
+
+.navbar a:visited {
+  color: #3D4737;
+}
+
+.navbar a:hover {
+  background-color: #a7956b;
+  color: white;
+}
+
+.navbar li:hover {
+  /* border-bottom: 3px solid white; */
+}
+
+.nav-button {
+  display: flex;
+}
+
+.banner {
+  height: 350px;
+  text-align: center;
+  margin: auto;
+}
+
+.webpage {
+  background-color: #C0B292;
+  text-align: center;
+  height: 700px;
+}
