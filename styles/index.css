@@ -1,13 +1,12 @@
 html {
   /* background-color: #8EA480; */
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #E8DAB9;  
+  background-color: #ede1c5;  
   min-width: 940px;
 }
 
-.webpage {
-    /* background-color: #ECECEC; */
-    /* height: 600px; */
+body {
+margin: 0px;
 }
 
 .header {
@@ -16,36 +15,22 @@ html {
   overflow: hidden;
 }
 
-.header input {
-  height: 20px;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-right: 15%;
-  padding: 6px 14px;
-  font-size: 18px;
-  font-family: 'Gaegu', sans-serif;
-  width: 200px;
+.nav-logo {
+  font-size: 30px;
+  text-decoration: none;
+  margin-left: 15%;
+  flex: 1;
+  margin-top: 5px;
 }
 
-.header input[type=text] {
-  margin-left: 5px;
-}
-
-hr {
-    border: 2px solid #7E9273;
-    border-radius: 8px;
-    width: 75%;
-    min-width: 600px;
-    margin-top: 0px;
-}
-
-body {
-  margin: 0px;
+.nav-logo:visited {
+  color: #7E9273;
+  align-items: center;
 }
 
 .navbar {
-  flex: 1;
-  margin-left: 15%;
+  margin-right: 2%;
+  margin-left: 20px;
 }
 
 .navbar ul {
@@ -77,24 +62,41 @@ body {
   font-size: 24px;
   font-family: 'Gaegu', sans-serif;
   transition: 0.3s;
-  color: #3D4737;
+  /* color: #3D4737; */
+  color: #595959;
 }
 
 .navbar a:visited {
-  color: #3D4737;
+  /* color: #3D4737; */
 }
 
 .navbar a:hover {
-  background-color: #a7956b;
-  color: white;
+  /* background-color: #a7956b;
+  color: white; */
+  color: #93a391;
+}
+
+.navbar li {
+  float: left;
+  margin-right: 30px;
+  align-items: center;
 }
 
 .navbar li:hover {
   /* border-bottom: 3px solid white; */
 }
 
-.nav-button {
-  display: flex;
+
+.header input[type=text] {
+  margin-left: 5px;
+}
+
+.divider {
+  border: 2px solid #7E9273;
+  border-radius: 8px;
+  width: 75%;
+  min-width: 600px;
+  margin-top: 0px;
 }
 
 .banner {
