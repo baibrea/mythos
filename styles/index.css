@@ -1,7 +1,7 @@
 html {
   /* background-color: #8EA480; */
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ede1c5;  
+  background-color: #fff7e6;  
   min-width: 940px;
 }
 
@@ -21,6 +21,14 @@ margin: 0px;
   margin-left: 15%;
   flex: 1;
   margin-top: 5px;
+  margin-right: 0px;
+  color: #596950;
+  padding: 5px;
+}
+
+.nav-logo a{
+  text-decoration: none;
+  padding: 5px;
 }
 
 .nav-logo:visited {
@@ -95,6 +103,11 @@ margin: 0px;
   margin-left: 5px;
 }
 
+.search {
+  margin-right: 15%;
+  display: flex;
+}
+
 .divider {
   border: 2px solid #7E9273;
   border-radius: 8px;
@@ -104,13 +117,13 @@ margin: 0px;
 }
 
 .banner {
-  height: 350px;
+  height: 400px;
   text-align: center;
   margin: auto;
 }
 
 .webpage {
-  background-color: #decfab;
+  background-color: #fcedcc;
   text-align: center;
   height: 700px;
 }
@@ -121,6 +134,7 @@ margin: 0px;
   justify-content: center;
   /* the percent in the margin, changes how high or low the gallery starts from the top, the second percent changed left right margin*/
   margin: 3% auto;
+
 }
 
 .book-gallery-wrap div{
