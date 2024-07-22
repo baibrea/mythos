@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Mythos</title>
-        <link href="styles/index.css" rel="stylesheet" type="text/css" />
+        <title>Home | Mythos</title>
+        <link href="styles/home.css" rel="stylesheet" type="text/css" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,17 +23,20 @@
               <a href="">home</a>
             </li>
             <li>
-              <a>browse</a>
+              <a href="browse.html" target="_blank">browse</a>
             </li>
             <li>
-              <a href="pages/about.html" target="_blank">about</a>
+              <a href="about.html" target="_blank">about</a>
             </li>
           </ul>
         </nav>
         
         <div class="search">
-          <input type="text" placeholder="search...">
-          <button>enter</button>
+          <form method="GET" action="browse.html" target="_blank">
+            <input type="text" name="q" placeholder="search...">
+            <button type="submit">Enter</button>
+          </form>
+
         </div>
       </header>
 
