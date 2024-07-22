@@ -1,8 +1,9 @@
 html {
   /* background-color: #8EA480; */
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff7e6;  
+  background-color: #dad7e7;  
   min-width: 940px;
+  font-family: "Mali";
+
 }
 
 body {
@@ -22,7 +23,6 @@ margin: 0px;
   flex: 1;
   margin-top: 5px;
   margin-right: 0px;
-  color: #596950;
   padding: 5px;
 }
 
@@ -32,16 +32,17 @@ margin: 0px;
 }
 
 .nav-logo a:visited {
-  color: #596950;
+  color: #4e3e74;
   align-items: center;
 }
 
 #logo {
-  padding: 5px;
+  width: 50px;
+  filter: drop-shadow(0 0 0 rgb(255, 255, 255));
 }
 
 #logo:hover {
-  color: #99b18c;
+  color: #968cb1;
   text-decoration: none;
   cursor: pointer;
 }
@@ -68,14 +69,14 @@ margin: 0px;
   text-align: center;
   padding: 8px 15px;
   border-radius: 4px;
-  font-size: 24px;
-  font-family: 'Gaegu', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
   transition: 0.3s;
-  color: #3f3f3f;
+  color: #212333;
 }
 
 .navbar a:hover {
-  color: #7d8d7b;
+  color: #6c7199;
   transform: rotate(4deg);
 }
 
@@ -91,8 +92,8 @@ margin: 0px;
   overflow: hidden;
   margin-right: 15%;
   padding: 6px 14px;
-  font-size: 18px;
-  font-family: 'Gaegu', sans-serif;
+  font-size: 16px;
+  font-family: "Mali";
   width: 200px;
 }
 
@@ -110,7 +111,8 @@ margin: 0px;
 }
 
 .divider {
-  border: 2px solid #7E9273;
+  /* border: 2px solid #7E9273; */
+  border: 2px solid #404050;
   border-radius: 8px;
   width: 75%;
   min-width: 600px;
@@ -124,9 +126,10 @@ margin: 0px;
 }
 
 .webpage {
-  background-color: #fcedcc;
+  /* background-color: #fcedcc; */
+  background-color: #2b2d42;
   text-align: center;
-  height: 700px;
+  height: 1000px;
 }
 
 .book-gallery-wrap {
@@ -176,7 +179,7 @@ margin: 0px;
   height: 90%;
   /*prevents strt of an image if it is too small or big*/
   object-fit: cover;
-  border: .5px solid #3f3f3f;
+  border: 1px solid #cecece;
   border-radius: 7px;
   margin: 12px;
   transform: scale(1.0);
@@ -187,8 +190,8 @@ margin: 0px;
   transform: scale(1.1);
   transition: 0.3s;
   outline: none;
-  border-color: black;
-  box-shadow: 0 0 10px black;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
   cursor: pointer;
 }
 
