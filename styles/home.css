@@ -206,6 +206,10 @@ margin: 0px;
 
 }
 
+.carousel-title {
+  color: hsla(240, 10%, 96%, 0.719);
+}
+
 .book-gallery-wrap div{
   /* changes the size of the gallery-wrap div */
   /*FIXME: work on fixing the size of the book carousel */ 
