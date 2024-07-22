@@ -27,6 +27,8 @@
     });
     //  });
 
+const searchInput = document.querySelector(".search input");
+
 const searchButton = document.querySelector(".search-img");
 const searchClose = document.querySelector(".close-img");
 const searchContent = document.querySelector(".search");
@@ -40,6 +42,7 @@ if (searchButton) {
 if (searchClose) {
     searchClose.addEventListener("click", () => {
         searchContent.classList.remove("show-search");
+        searchInput.innerHTML = "";
     })
 
     window.addEventListener("keydown", () => {

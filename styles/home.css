@@ -3,7 +3,6 @@ html {
   background-color: #dad7e7;  
   min-width: 940px;
   font-family: "Mali";
-
 }
 
 body {
@@ -14,6 +13,7 @@ margin: 0px;
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin-right: 1rem;
 }
 
 .nav-logo {
@@ -22,8 +22,15 @@ margin: 0px;
   margin-left: 15%;
   flex: 1;
   margin-top: 5px;
-  margin-right: 0px;
   padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo p {
+  font-size: 22px;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .nav-logo a{
@@ -48,18 +55,18 @@ margin: 0px;
 }
 
 .navbar {
-  margin-right: 2%;
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .navbar ul {
   display: flex;
   list-style-type: none;
   margin: 2px 0px;
-  padding: 0px;
   overflow: hidden;
   display: inline-block;
   margin-top: 5px;
+  margin-right: 2rem;
 }
 
 .navbar a {
@@ -70,19 +77,21 @@ margin: 0px;
   padding: 8px 15px;
   border-radius: 4px;
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
   transition: 0.3s;
   color: #212333;
 }
 
 .navbar a:hover {
   color: #6c7199;
+  transition: 0.3s;
   transform: rotate(4deg);
 }
 
 .navbar li {
+  z-index: 100;
   float: left;
-  margin-right: 30px;
+  margin-right: 1.25rem;
   align-items: center;
 }
 
