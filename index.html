@@ -50,7 +50,7 @@
       <div class="webpage">
         <p>this is the book carousel that timothy worked hard on please enjoy it rate it 5 stars thanks</p>
         <div class="book-gallery-wrap">
-          <img src="images/left-arrow.png" id="leftButton">
+          <img src="images/left-arrow.png" id="leftButton" class="leftB">
           <div class="book-gallery">
             <div>
               <span><img src="covers/one-dark-window.png"></span>
@@ -80,11 +80,11 @@
               <span><img src="covers/shogun.png"></span>
             </div>
           </div>
-          <img src="images/right-arrow.png" id="rightButton">
+          <img src="images/right-arrow.png" id="rightButton" class="rightB">
         </div>
         <!-- 2nd carousel :)  -->
         <div class="book-gallery-wrap">
-          <img src="images/left-arrow.png" id="leftButton">
+          <img src="images/left-arrow.png" id="leftButton" class="leftB">
           <div class="book-gallery">
             <div>
               <span><img src="covers/one-dark-window.png"></span>
@@ -114,10 +114,40 @@
               <span><img src="covers/shogun.png"></span>
             </div>
           </div>
-          <img src="images/right-arrow.png" id="rightButton">
+          <img src="images/right-arrow.png" id="rightButton" class="rightB">
         </div>
         
       </div>
-      <script src="scripts/home.js"></script>
+      <script type="module" src="scripts/home.js"></script>
+      <script>
+        //This is only for scrolling through the carousel (dont need)
+        // scrollContain.addEventListener("wheel", (evt) => {
+        //   evt.preventDefault();
+        //   scrollContain.scrollLeft += evt.deltaY;
+        //   scrollContain.style.scrollBehavior = "auto";
+        // });
+        
+        // document.addEventListener("DOMContentLoaded", function () {
+          let scrollContainers = document.querySelectorAll(".book-gallery");
+          let leftButtons = document.querySelectorAll(".leftB");
+          let rightButtons = document.querySelectorAll(".rightB");
+
+          leftButtons.forEach((leftButton, i) => {
+            leftButton.addEventListener("click", () => {
+            let scrollCont = scrollContainers[i];
+            scrollCont.style.scrollBehavior = "smooth";
+            scrollCont.scrollLeft -= 1350;
+            });
+          });
+
+          rightButtons.forEach((rightButton, i) => {
+            rightButton.addEventListener("click", () => {
+            let scrollCont = scrollContainers[i];
+            scrollCont.style.scrollBehavior = "smooth";
+            scrollCont.scrollLeft += 1350;
+            });
+          });
+        //  });
+      </script>
     </body>
 </html>
