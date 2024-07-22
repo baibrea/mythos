@@ -1,17 +1,3 @@
-let searchBar = document.querySelector(".search input");
-let searchButton = document.querySelector(".search button");
-
-searchButton.addEventListener("click", () => {
-    getBook(searchBar.value);
-})
-
-searchBar.addEventListener("keydown", () => {
-    if (event.keyCode === 13) {
-        getBook(searchBar.value);
-    }
-})
-
-
 //This is only for scrolling through the carousel (dont need)
 // scrollContain.addEventListener("wheel", (evt) => {
 //   evt.preventDefault();
@@ -40,3 +26,25 @@ searchBar.addEventListener("keydown", () => {
         });
     });
     //  });
+
+const searchButton = document.querySelector(".search-img");
+const searchClose = document.querySelector(".close-img");
+const searchContent = document.querySelector(".search");
+
+if (searchButton) {
+    searchButton.addEventListener("click", () => {
+        searchContent.classList.add("show-search");
+    })
+}
+
+if (searchClose) {
+    searchClose.addEventListener("click", () => {
+        searchContent.classList.remove("show-search");
+    })
+
+    window.addEventListener("keydown", () => {
+        if (event.keyCode === 27) {
+            searchContent.classList.remove("show-search");
+        }
+    })
+}
