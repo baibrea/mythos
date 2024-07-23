@@ -31,13 +31,13 @@ class WebsiteHeader extends HTMLElement {
                 </nav>
 
                 <div class="search">
-                <img src="images/close.png" class="close-img">
-                <form method="GET" action="search.html">
-                    <input type="text" name="q" placeholder="What are you looking for?">
-                    <button type="submit" class="submit-button">
-                    <img src="images/search-interface-symbol.png" class="search-img">
-                    </button>
-                </form>        
+                    <img src="images/close.png" class="close-img">
+                    <form method="GET" action="search.html">
+                        <input type="text" name="q" placeholder="What are you looking for?" autofocus>
+                        <button type="submit" class="submit-button">
+                        <img src="images/search-interface-symbol.png" class="search-img">
+                        </button>
+                    </form>        
                 </div>
 
             </header>
