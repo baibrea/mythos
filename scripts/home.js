@@ -26,28 +26,3 @@
         });
     });
     //  });
-
-const searchInput = document.querySelector(".search input");
-
-const searchButton = document.querySelector(".search-img");
-const searchClose = document.querySelector(".close-img");
-const searchContent = document.querySelector(".search");
-
-if (searchButton) {
-    searchButton.addEventListener("click", () => {
-        searchContent.classList.add("show-search");
-    })
-}
-
-if (searchClose) {
-    searchClose.addEventListener("click", () => {
-        searchContent.classList.remove("show-search");
-        searchInput.innerHTML = "";
-    })
-
-    window.addEventListener("keydown", () => {
-        if (event.keyCode === 27) {
-            searchContent.classList.remove("show-search");
-        }
-    })
-}
