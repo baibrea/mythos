@@ -1,5 +1,16 @@
 let apiUrl = "https://openlibrary.org/search.json";
 
+function imgExists(url) {
+    let http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 async function findBook(input) {
     const response = await fetch(apiUrl + input);
 
@@ -12,12 +23,19 @@ async function findBook(input) {
         outputDiv.innerHTML += `Showing 10 of ${data.docs.length} results`;
 
         for (let i =  0; i < 10; i++) {
-            let coverString = "https://covers.openlibrary.org/b/isbn/" + data.docs[i].isbn[0] + "-M.jpg";
+            let coverString = "https://covers.openlibrary.org/b/isbn/" + data.docs[i].isbn[0] + "-M.jpg?default=false";
+            let coverSrc = "";
+
+            if (imgExists(coverString)) {
+                coverSrc = coverString;
+            } else {
+                coverSrc = "images/default-cover.png";
+            }
 
             outputDiv.innerHTML += `
                 <hr>
                 <div class="book-container">
-                    <img src="${coverString}">
+                    <img src="${coverSrc}">
                     <div class="desc-container">
                         <p class="book-title">${data.docs[i].title}</p>
                         <p class="book-author">by ${data.docs[i].author_name[0]}</p>
