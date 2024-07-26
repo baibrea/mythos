@@ -91,6 +91,7 @@ margin: 0px;
   width: 40px;
   cursor: pointer;
   margin: 40px;
+  filter: brightness(0) invert(1);
 }
 
 .book-gallery-wrap img:hover{

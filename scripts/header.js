@@ -33,11 +33,19 @@ class WebsiteHeader extends HTMLElement {
                 <div class="search">
                     <img src="images/close.png" class="close-img">
                     <form method="GET" action="search.html">
-                        <input type="text" name="q" placeholder="What are you looking for?" autofocus>
+                        <input type="text" name="q" placeholder="What are you looking for?" autocomplete="off" autofocus>
                         <button type="submit" class="submit-button">
                         <img src="images/search-interface-symbol.png" class="search-img">
                         </button>
-                    </form>        
+                    </form>
+                    <div class="result-box">
+                        <ul>
+                            <li>One Dark Window</li>
+                            <li>Shogun</li>
+                            <li>I like you o///o</li>
+                            <li>😳👉👈</li>
+                        </ul>
+                    </div>
                 </div>
 
             </header>

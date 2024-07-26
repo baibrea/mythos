@@ -179,33 +179,44 @@ body {
     height: 25px;
     cursor: pointer;
   }
-  
-  .close-img {
-    display: block;
-    margin-left: 80%;
-    margin-right: auto;  
-    width: 26px;
-    height: 26px;
+
+.result-box ul{
+  border-top: 1px solid #999;
+  padding: 15px 10px;
+}
+
+.result-box ul li{
+    list-style: none;
+    border-radius: 3px;
+    padding: 15px 10px;
     cursor: pointer;
-    margin-bottom: 50px;
-  }
-  
-  .submit-button {
-    border: none;
-    padding: 15px;
-    margin-right: 8px;
-    cursor: pointer;
-    border-radius: 30px;
-    background-color: transparent;
-  }
-  
-  .show-search {
-    top: -5%;
-  }
-  
-  .banner {
-    height: 400px;
-    text-align: center;
-    margin: auto;
-  }
-  
+}
+
+.close-img {
+  display: block;
+  margin-left: 80%;
+  margin-right: auto;  
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.submit-button {
+  border: none;
+  padding: 15px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 30px;
+  background-color: transparent;
+}
+
+.show-search {
+  top: -5%;
+}
+
+.banner {
+  height: 400px;
+  text-align: center;
+  margin: auto;
+}
