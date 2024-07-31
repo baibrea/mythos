@@ -1,41 +1,32 @@
-let apiUrl = "https://openlibrary.org/search.json";
+import { getCover } from "./utils/api.js";
 
-function imgExists(url) {
-    let http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status != 404) {
-        return true;
-    } else {
-        return false;
-    }
-}
+let apiUrl = "https://openlibrary.org/search.json";
 
 function passKey(editionKey) {
     window.location.href = `http://localhost:3000/book/?q=${editionKey}`;
     localStorage.setItem("editionKey", editionKey);
 }
 
-async function findBook(input) {
+async function listBooks(input) {
     const response = await fetch(apiUrl + input);
 
     if (response.status === 404) {
         // Add error message
     } else {
-        let data = await response.json();
+        const data = await response.json();
         let outputDiv = document.querySelector(".output");
 
-        outputDiv.innerHTML += `Showing 10 of ${data.docs.length} results`;
+        if (data.docs.length < 10) {
+            outputDiv.innerHTML += `Showing ${data.docs.length} of ${data.docs.length} results`
+        } else {
+            outputDiv.innerHTML += `Showing 10 of ${data.docs.length} results`;
+        }
 
         for (let i =  0; i < 2; i++) {
-            let coverString = "https://covers.openlibrary.org/b/isbn/" + data.docs[i].isbn[0] + "-M.jpg?default=false";
-            let coverSrc = "";
 
-            if (imgExists(coverString)) {
-                coverSrc = coverString;
-            } else {
-                coverSrc = "images/default-cover.png";
-            }
+            const coverSrc = getCover(data.docs[i].isbn[0]);
+            console.log(data.docs[i].isbn[0])
+
             outputDiv.innerHTML += `
                 <hr>    
                 <a href="#" class="book-container" name="${data.docs[i].edition_key[i]}">
@@ -60,6 +51,6 @@ async function findBook(input) {
 
 let searchInput = window.location.search;
 
-findBook(searchInput);
+listBooks(searchInput);
 console.log(apiUrl + searchInput);
 
