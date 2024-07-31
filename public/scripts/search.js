@@ -11,6 +11,13 @@ function imgExists(url) {
     }
 }
 
+function passInfo(info) {
+    console.log("info received");
+    console.log(info);
+    localStorage.setItem("searchItem", info);
+    window.location.href='/book'
+}
+
 async function findBook(input) {
     const response = await fetch(apiUrl + input);
 
@@ -22,7 +29,7 @@ async function findBook(input) {
 
         outputDiv.innerHTML += `Showing 10 of ${data.docs.length} results`;
 
-        for (let i =  0; i < 10; i++) {
+        for (let i =  0; i < 2; i++) {
             let coverString = "https://covers.openlibrary.org/b/isbn/" + data.docs[i].isbn[0] + "-M.jpg?default=false";
             let coverSrc = "";
 
@@ -31,27 +38,25 @@ async function findBook(input) {
             } else {
                 coverSrc = "images/default-cover.png";
             }
-
             outputDiv.innerHTML += `
-                <hr>
-                <form class="book-container">     
-                    <a href="/book">                   
-                        <img src="${coverSrc}">
-                        <div class="desc-container">
-                            <p class="book-title">${data.docs[i].title}</p>
-                            <p class="book-author">by ${data.docs[i].author_name[0]}</p>
-                        </div>
-                    </a>
-                </form>
+                <hr>    
+                <a href="#" class="book-container" name="${`openlibrary.org/works/${data.docs[i].edition_key[i]}.json`}">
+                    <img src="${coverSrc}">
+                    <div class="desc-container">
+                        <p class="book-title">${data.docs[i].title}</p>
+                        <p class="book-author">by ${data.docs[i].author_name[0]}</p>
+                    </div>
+                </a>
             `
+        }
+        let bookContainers = document.getElementsByClassName("book-container");
 
-            let bookContainer = document.querySelector(".book-container");
-
-            bookContainer.addEventListener("click", () => {
-                let temp = "hiiiiiiiii";
-                localStorage.setItem("randomInput", temp);
+        for (let i = 0; i < bookContainers.length; i++) {
+            bookContainers[i].addEventListener("click", () => {
+                passInfo(bookContainers[i].getAttribute("name"));
             })
         }
+
     }
 }
 
