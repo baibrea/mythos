@@ -11,11 +11,9 @@ function imgExists(url) {
     }
 }
 
-function passInfo(info) {
-    console.log("info received");
-    console.log(info);
-    localStorage.setItem("searchItem", info);
-    window.location.href='/book'
+function passKey(editionKey) {
+    window.location.href = `http://localhost:3000/book/?q=${editionKey}`;
+    localStorage.setItem("editionKey", editionKey);
 }
 
 async function findBook(input) {
@@ -40,7 +38,7 @@ async function findBook(input) {
             }
             outputDiv.innerHTML += `
                 <hr>    
-                <a href="#" class="book-container" name="${`openlibrary.org/works/${data.docs[i].edition_key[i]}.json`}">
+                <a href="#" class="book-container" name="${data.docs[i].edition_key[i]}">
                     <img src="${coverSrc}">
                     <div class="desc-container">
                         <p class="book-title">${data.docs[i].title}</p>
@@ -53,7 +51,7 @@ async function findBook(input) {
 
         for (let i = 0; i < bookContainers.length; i++) {
             bookContainers[i].addEventListener("click", () => {
-                passInfo(bookContainers[i].getAttribute("name"));
+                passKey(bookContainers[i].getAttribute("name"));
             })
         }
 
