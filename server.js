@@ -23,6 +23,11 @@ app.get('/about', (req, res) => {
   res.sendFile("pages/about.html", {root: __dirname});
 })
 
+app.get('/book', (req, res) => {
+  res.sendFile("pages/book.html", {root: __dirname});
+})
+
+
 app.listen(port, () => {
   console.log(`App listening on port http://localhost:${port}`)
 })

@@ -34,14 +34,23 @@ async function findBook(input) {
 
             outputDiv.innerHTML += `
                 <hr>
-                <div class="book-container">
-                    <img src="${coverSrc}">
-                    <div class="desc-container">
-                        <p class="book-title">${data.docs[i].title}</p>
-                        <p class="book-author">by ${data.docs[i].author_name[0]}</p>
-                    </div>
-                </div>
+                <form class="book-container">     
+                    <a href="/book">                   
+                        <img src="${coverSrc}">
+                        <div class="desc-container">
+                            <p class="book-title">${data.docs[i].title}</p>
+                            <p class="book-author">by ${data.docs[i].author_name[0]}</p>
+                        </div>
+                    </a>
+                </form>
             `
+
+            let bookContainer = document.querySelector(".book-container");
+
+            bookContainer.addEventListener("click", () => {
+                let temp = "hiiiiiiiii";
+                localStorage.setItem("randomInput", temp);
+            })
         }
     }
 }
