@@ -181,9 +181,30 @@ body {
     cursor: pointer;
   }
 
+.row {
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.result-box{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-left: auto; 
+  margin-right: auto;
+  column-gap: 0.5rem;
+}
+
 .result-box ul{
+  width: 100%;
+  /* max-width: 600px; */
+  margin-left: 30%;
+  margin-right: 30%;
+  align-items: center;
   border-top: 1px solid #999;
+  position: relative;
   padding: 15px 10px;
+  text-align: center;
 }
 
 .result-box ul li{
@@ -191,6 +212,10 @@ body {
     border-radius: 3px;
     padding: 15px 10px;
     cursor: pointer;
+}
+
+.result-box ul li:hover{
+  background: #e9f3ff;
 }
 
 .close-img {

@@ -32,12 +32,14 @@ class WebsiteHeader extends HTMLElement {
 
                 <div class="search">
                     <img src="/images/close.png" class="close-img">
-                    <form method="GET" action="/search">
-                        <input type="text" name="q" placeholder="What are you looking for?" autocomplete="off" autofocus>
-                        <button type="submit" class="submit-button">
-                        <img src="/images/search-interface-symbol.png" class="search-img">
-                        </button>
-                    </form>
+                    <div class="row">
+                        <form method="GET" action="/search">
+                            <input type="text" name="q" placeholder="What are you looking for?" autocomplete="off" autofocus>
+                            <button type="submit" class="submit-button">
+                            <img src="/images/search-interface-symbol.png" class="search-img">
+                            </button>
+                        </form>
+                    </div>
                     <div class="result-box">
                         <ul>
                             <li>One Dark Window</li>
