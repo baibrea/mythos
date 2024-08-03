@@ -1,12 +1,15 @@
-import { getWork } from "./utils/api.js";
+import { getAuthor, getWorkData, getDesc, getCover, getEditionData, getPageCount } from "./utils/api.js";
 
 const editionKey = localStorage.getItem("editionKey");
-const bookData = await getWork(editionKey);
+const bookData = await getWorkData(editionKey);
 
 let outputDiv = document.querySelector(".output");
 
 outputDiv.innerHTML += `
+    <img src="${getCover(bookData.covers[0])}">
     <h2>${bookData.title}</h2>
-    <p>${bookData.author_name}</p>
-    <p>${bookData.description.value}</p>
+    <p>By ${await getAuthor(bookData)}</p>
+    <hr>
+    <p>${getDesc(bookData)}</p>
+    <p>${await getPageCount(editionKey)} pages</p>
 `

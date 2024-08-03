@@ -1,5 +1,5 @@
-export function getCover(isbn) {
-  let coverUrl = "https://covers.openlibrary.org/b/isbn/" + isbn + "-M.jpg?default=false";
+export function getCover(id) {
+  let coverUrl = "https://covers.openlibrary.org/b/id/" + id + "-M.jpg?default=false";
   let coverSrc = "";
 
   let http = new XMLHttpRequest();
@@ -13,24 +13,60 @@ export function getCover(isbn) {
   return coverSrc;
 }
 
-export async function getWork(key) {
-
-  const editionResponse = await fetch(`https://openlibrary.org/books/${key}.json`);
-  console.log(`https://openlibrary.org/books/${key}.json`);
+export async function getEditionData(edition) {
+  const editionResponse = await fetch(`https://openlibrary.org/books/${edition}.json`);
+  console.log(`edition URL: https://openlibrary.org/books/${edition}.json`);
 
   if (editionResponse.status === 404) {
-      // Add error message
-      console.log("error");
+    // Add error message
+    console.log("error");
   } else {
-      const editionData = await editionResponse.json();
+    const editionData = await editionResponse.json();
+    return editionData;
+  }
+}
+
+export async function getWorkData(key) {
+      const editionData = await getEditionData(key);
 
       const workKey = editionData.works[0].key;
-      console.log(workKey);
+      console.log(`work key: ${workKey}`);
       const workUrl = `https://openlibrary.org${workKey}.json`
 
       const workResponse = await fetch(workUrl);
-      console.log(workUrl);
+      console.log(`work URL: ${workUrl}`);
       const workData = await workResponse.json();
       return workData;
+}
+
+export function getDesc(bookData) {
+  let bookDesc = "";
+
+  if (Object.hasOwn(bookData, 'description')) {
+    bookDesc = bookData.description;
+    if (typeof(bookDesc) == "object") {
+        bookDesc = bookDesc.value;
+    }
+  } else {
+    bookDesc = "This edition doesn't have a description yet."
   }
+
+  return bookDesc;
+}
+
+export async function getAuthor(workData) {
+  let authorId = workData.authors[0].author.key;
+  console.log(`author ID: ${authorId}`);
+
+  const response = await fetch(`https://openlibrary.org${authorId}.json`);
+  const authorData = await response.json();
+
+  return authorData.name;
+}
+
+export async function getPageCount(editionKey) {
+  const editionData = await getEditionData(editionKey);
+  const pageCount = editionData.number_of_pages;
+
+  return pageCount;
 }

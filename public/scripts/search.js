@@ -24,13 +24,10 @@ async function listBooks(input) {
 
         for (let i =  0; i < 2; i++) {
 
-            const coverSrc = getCover(data.docs[i].isbn[0]);
-            console.log(data.docs[i].isbn[0])
-
             outputDiv.innerHTML += `
                 <hr>    
                 <a href="#" class="book-container" name="${data.docs[i].edition_key[i]}">
-                    <img src="${coverSrc}">
+                    <img src="${getCover(data.docs[i].cover_i)}">
                     <div class="desc-container">
                         <p class="book-title">${data.docs[i].title}</p>
                         <p class="book-author">by ${data.docs[i].author_name[0]}</p>
