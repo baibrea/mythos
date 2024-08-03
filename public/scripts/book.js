@@ -1,8 +1,12 @@
-import { getBook } from "./utils/api.js";
+import { getWork } from "./utils/api.js";
 
 const editionKey = localStorage.getItem("editionKey");
-const bookData = await getBook(editionKey);
+const bookData = await getWork(editionKey);
 
 let outputDiv = document.querySelector(".output");
-outputDiv.innerHTML += editionKey;
-outputDiv.innerHTML += ` ${bookData.title}`;
+
+outputDiv.innerHTML += `
+    <h2>${bookData.title}</h2>
+    <p>${bookData.author_name}</p>
+    <p>${bookData.description.value}</p>
+`

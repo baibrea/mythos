@@ -13,16 +13,24 @@ export function getCover(isbn) {
   return coverSrc;
 }
 
-export async function getBook(edition) {
+export async function getWork(key) {
 
-  const response = await fetch(`https://openlibrary.org/books/${edition}.json`);
-  console.log(`https://openlibrary.org/books/${edition}.json`);
+  const editionResponse = await fetch(`https://openlibrary.org/books/${key}.json`);
+  console.log(`https://openlibrary.org/books/${key}.json`);
 
-  if (response.status === 404) {
+  if (editionResponse.status === 404) {
       // Add error message
       console.log("error");
   } else {
-      const data = await response.json();
-      return data;
+      const editionData = await editionResponse.json();
+
+      const workKey = editionData.works[0].key;
+      console.log(workKey);
+      const workUrl = `https://openlibrary.org${workKey}.json`
+
+      const workResponse = await fetch(workUrl);
+      console.log(workUrl);
+      const workData = await workResponse.json();
+      return workData;
   }
 }
