@@ -22,11 +22,11 @@ async function listBooks(input) {
             outputDiv.innerHTML += `Showing 10 of ${data.docs.length} results`;
         }
 
-        for (let i =  0; i < 2; i++) {
+        for (let i =  0; i < 6; i++) {
 
             outputDiv.innerHTML += `
                 <hr>    
-                <a href="#" class="book-container" name="${data.docs[i].edition_key[i]}">
+                <a href="#" class="book-container" name="${data.docs[i].edition_key[0]}">
                     <img src="${getCover(data.docs[i].cover_i)}">
                     <div class="desc-container">
                         <p class="book-title">${data.docs[i].title}</p>

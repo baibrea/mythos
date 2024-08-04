@@ -65,8 +65,14 @@ export async function getAuthor(workData) {
 }
 
 export async function getPageCount(editionKey) {
+  let pageCount = "";
   const editionData = await getEditionData(editionKey);
-  const pageCount = editionData.number_of_pages;
+
+  if (Object.hasOwn(editionData, 'number_of_pages')) {
+    pageCount = editionData.number_of_pages;
+  } else {
+    pageCount = "Unknown number of "
+  }
 
   return pageCount;
 }
