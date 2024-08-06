@@ -3,13 +3,17 @@ import { getAuthor, getWorkData, getDesc, getCover, getEditionData, getPageCount
 const editionKey = localStorage.getItem("editionKey");
 const bookData = await getWorkData(editionKey);
 
-let outputDiv = document.querySelector(".output");
+let outputDiv = document.querySelector(".page-container");
 
 outputDiv.innerHTML += `
-    <img src="${getCover(bookData.covers[0])}">
-    <h2>${bookData.title}</h2>
-    <p>By ${await getAuthor(bookData)}</p>
-    <hr>
+    <div class="details-container">   
+        <img class="book-cover" src="${getCover(bookData.covers[0])}">
+        <div class="details-right">
+            <h2 class="title">${bookData.title}</h2>
+            <p class="author">By ${await getAuthor(bookData)}</p>
+            <p class="page-count">${await getPageCount(editionKey)} pages</p>
+        </div>
+    </div>
+    <hr class="info-divider"></div>
     <p>${getDesc(bookData)}</p>
-    <p>${await getPageCount(editionKey)} pages</p>
 `

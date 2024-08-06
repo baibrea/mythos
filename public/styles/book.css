@@ -1,0 +1,41 @@
+.page-container {
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    margin: 40px auto;
+}
+
+.book-cover {
+    
+}
+
+.details-container {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.details-right {
+    margin-left: 20px;
+    position: relative;
+}
+
+.title {
+    margin-bottom: 0px;
+}
+
+.author {
+    margin: 0px;
+}
+
+.page-count {
+    position: absolute;
+    bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.5;
+}
+
+.info-divider {
+    border: 1px solid #404050;
+    opacity: 0.8;
+}
