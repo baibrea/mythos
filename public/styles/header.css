@@ -197,6 +197,8 @@ body {
   margin-left: auto; 
   margin-right: auto;
   column-gap: 0.5rem;
+  /* max-height: 300px;
+  overflow-y: scroll; */
 }
 
 .result-box ul{

@@ -34,7 +34,7 @@ class WebsiteHeader extends HTMLElement {
                     <img src="/images/close.png" class="close-img">
                     <div class="row">
                         <form method="GET" action="/search">
-                            <input type="text" name="q" placeholder="What are you looking for?" autocomplete="off" autofocus>
+                            <input type="text" name="q" id="input-box" placeholder="What are you looking for?" autocomplete="off" autofocus>
                             <button type="submit" class="submit-button">
                             <img src="/images/search-interface-symbol.png" class="search-img">
                             </button>
@@ -79,4 +79,52 @@ if (searchClose) {
             searchContent.classList.remove("show-search");
         }
     })
+}
+
+let availableKeywords = [
+    'Shogun' ,
+    'The Lightning Thief' ,
+    'Throne of Glass' ,
+    'Blue Period' , 
+    'Red Rising' ,
+    'Big Nate' ,
+    'Pachinko',
+    'The Sea of Monsters',
+    'The Titans Curse',
+    'The Battle of the Labyrinth',
+    'The Last Olympian',
+    'The Chalice of the Gods',
+    'Wrath of the Triple Goddess'
+];
+
+const resultsBox = document.querySelector(".result-box");
+const inputBox = document.getElementById("input-box");
+
+inputBox.onkeyup = function() {
+    let result = [];
+    let input = inputBox.value;
+    if(input.length) {
+        result = availableKeywords.filter((keyword)=>{
+            return keyword.toLowerCase().includes(input.toLowerCase());
+        });
+        console.log(result);
+    }
+    display(result);
+
+    if(!result.length) {
+        resultsBox.innerHTML = '';
+    }
+}
+
+function display(result) {
+    const content = result.map((list)=>{
+        return"<li onclick=selectInput(this)>" + list + "</li>";
+    });
+
+    resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
+}
+
+function selectInput(list) {
+    inputBox.value = list.innerHTML;
+    resultsBox.innerHTML = ' ';
 }
