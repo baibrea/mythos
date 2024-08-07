@@ -41,11 +41,7 @@ class WebsiteHeader extends HTMLElement {
                         </form>
                     </div>
                     <div class="result-box">
-                        <ul>
-                            <li>One Dark Window</li>
-                            <li>Shogun</li>
-                            <li>I like you o///o</li>
-                            <li>😳👉👈</li>
+                        <ul class="result-list">
                         </ul>
                     </div>
                 </div>
@@ -97,11 +93,15 @@ let availableKeywords = [
     'Wrath of the Triple Goddess'
 ];
 
+// let availableKeywords = [];
+
 const resultsBox = document.querySelector(".result-box");
+const resultList = document.querySelector(".result-list");
 const inputBox = document.getElementById("input-box");
 
 inputBox.onkeyup = function() {
     let result = [];
+    resultsBox.innerHTML = "";
     let input = inputBox.value;
     if(input.length) {
         result = availableKeywords.filter((keyword)=>{
@@ -109,16 +109,34 @@ inputBox.onkeyup = function() {
         });
         console.log(result);
     }
-    display(result);
+    
+    for (let i = 0; i < result.length; i++) {
+        console.log(`hi ${result[i]}`);
+        resultsBox.innerHTML += `
+            <li class='book-result' name="${result[i]}">${result[i]}</li>
+        `
+    }
 
     if(!result.length) {
         resultsBox.innerHTML = '';
+    }
+
+    let bookTitles = document.getElementsByClassName("book-result");
+
+    for (let i = 0; i < bookTitles.length; i++) {
+        bookTitles[i].addEventListener("click", () => {
+            let title = bookTitles[i].getAttribute("name");
+            inputBox.value = title;
+            title = title.split(' ').join('+');
+            window.location.href=`http://localhost:3000/search/?q=${title}`;
+            console.log("CLICKED");
+        })
     }
 }
 
 function display(result) {
     const content = result.map((list)=>{
-        return"<li onclick=selectInput(this)>" + list + "</li>";
+        return"<li class='book-title' onclick=selectInput(this)>" + list + "</li>";
     });
 
     resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"

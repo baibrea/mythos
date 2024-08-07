@@ -192,6 +192,7 @@ body {
 
 .result-box{
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: center;
   margin-left: auto; 
@@ -201,8 +202,8 @@ body {
   overflow-y: scroll; */
 }
 
-.result-box ul{
-  width: 100%;
+.result-list{
+  width: 60%;
   /* max-width: 600px; */
   margin-left: 30%;
   margin-right: 30%;
@@ -213,14 +214,17 @@ body {
   text-align: center;
 }
 
-.result-box ul li{
+.book-result {
+    width: 60%;
+    max-width: 600px;
+    text-align: center;
     list-style: none;
     border-radius: 3px;
     padding: 15px 10px;
     cursor: pointer;
 }
 
-.result-box ul li:hover{
+.book-result:hover{
   background: #e9f3ff;
 }
 

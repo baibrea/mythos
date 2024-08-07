@@ -76,3 +76,17 @@ export async function getPageCount(editionKey) {
 
   return pageCount;
 }
+
+export async function getSearchResults(input) {
+  let apiUrl = "https://openlibrary.org/search.json";
+
+  const response = await fetch(apiUrl + input);
+
+    if (response.status === 404) {
+      // Add error message
+    } else {
+      const data = await response.json();
+      return data;
+    }
+
+}
