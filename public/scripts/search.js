@@ -43,5 +43,3 @@ async function listBooks(input) {
 let searchInput = window.location.search;
 
 listBooks(searchInput);
-console.log(apiUrl + searchInput);
-

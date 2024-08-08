@@ -95,8 +95,6 @@ let availableKeywords = [
     'Wrath of the Triple Goddess'
 ];
 
-// let availableKeywords = [];
-
 const resultsBox = document.querySelector(".result-box");
 const resultsList = document.querySelector(".result-list");
 const inputBox = document.getElementById("input-box");
@@ -110,12 +108,12 @@ inputBox.addEventListener("input", (text) => {
         resultsList.innerHTML = "";
         let input = text.target.value;
 
-        if(input.length > 8) {
-            const data = await getSearchResults(input);
+        if(input.length > 5) {
+            const data = await getSearchResults(`?q=${input}`);
 
             resultsList.innerHTML = "";
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 6; i++) {
                 if (data.docs.length > i) {
                     result[i] = data.docs[i].title;
                     resultsList.innerHTML += `
@@ -146,55 +144,6 @@ inputBox.addEventListener("input", (text) => {
         }
     }, 1000);
 })
-
-// inputBox.onkeyup = async function() {
-//     let result = [];
-//     resultsList.innerHTML = "";
-//     let input = inputBox.value;
-//     if(input.length > 8) {
-//         const data = await getSearchResults(input);
-
-//         resultsList.innerHTML = "";
-
-//         for (let i = 0; i < 5; i++) {
-//             if (data.docs.length > i) {
-//                 result[i] = data.docs[i].title;
-//                 resultsList.innerHTML += `
-//                     <li class='book-result' name="${result[i]}">${result[i]}</li>
-//                 `
-//             } else {
-//                 break;
-//             }
-//         }
-
-//         // result = availableKeywords.filter((keyword)=>{
-//         //     return keyword.toLowerCase().includes(input.toLowerCase());
-//         // });
-//         console.log(result);
-//         resultsList.classList.add("result-list-bg");
-
-//         // for (let i = 0; i < result.length; i++) {
-//         //     resultsList.innerHTML += `
-//         //         <li class='book-result' name="${result[i]}">${result[i]}</li>
-//         //     `
-//         // }
-    
-//         let bookTitles = document.getElementsByClassName("book-result");
-    
-//         for (let i = 0; i < bookTitles.length; i++) {
-//             bookTitles[i].addEventListener("click", () => {
-//                 let title = bookTitles[i].getAttribute("name");
-//                 inputBox.value = title;
-//                 title = title.split(' ').join('+');
-//                 window.location.href=`http://localhost:3000/search/?q=${title}`;
-//                 console.log("CLICKED");
-//             })
-//         }
-//     } else if (!input.length) {
-//         resultsBox.innerHTML = '';
-//         resultsList.classList.remove("result-list-bg");
-//     }
-// }
 
 function display(result) {
     const content = result.map((list)=>{
