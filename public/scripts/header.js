@@ -96,29 +96,29 @@ let availableKeywords = [
 // let availableKeywords = [];
 
 const resultsBox = document.querySelector(".result-box");
-const resultList = document.querySelector(".result-list");
+const resultsList = document.querySelector(".result-list");
 const inputBox = document.getElementById("input-box");
 
 inputBox.onkeyup = function() {
     let result = [];
-    resultsBox.innerHTML = "";
+    resultsList.innerHTML = "";
     let input = inputBox.value;
     if(input.length) {
         result = availableKeywords.filter((keyword)=>{
             return keyword.toLowerCase().includes(input.toLowerCase());
         });
         console.log(result);
+        resultsList.classList.add("result-list-bg");
+    } else {
+        resultsBox.innerHTML = '';
+        resultsList.classList.remove("result-list-bg");
     }
     
     for (let i = 0; i < result.length; i++) {
         console.log(`hi ${result[i]}`);
-        resultsBox.innerHTML += `
+        resultsList.innerHTML += `
             <li class='book-result' name="${result[i]}">${result[i]}</li>
         `
-    }
-
-    if(!result.length) {
-        resultsBox.innerHTML = '';
     }
 
     let bookTitles = document.getElementsByClassName("book-result");
