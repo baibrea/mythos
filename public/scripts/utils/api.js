@@ -78,8 +78,9 @@ export async function getPageCount(editionKey) {
 }
 
 export async function getSearchResults(input) {
-  let apiUrl = "https://openlibrary.org/search.json";
+  let apiUrl = "https://openlibrary.org/search.json?q=";
 
+  // input = input.split("").join("+");
   const response = await fetch(apiUrl + input);
 
     if (response.status === 404) {

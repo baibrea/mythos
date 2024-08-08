@@ -1,3 +1,5 @@
+import { getSearchResults } from "./utils/api.js";
+
 class WebsiteHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -99,40 +101,100 @@ const resultsBox = document.querySelector(".result-box");
 const resultsList = document.querySelector(".result-list");
 const inputBox = document.getElementById("input-box");
 
-inputBox.onkeyup = function() {
-    let result = [];
-    resultsList.innerHTML = "";
-    let input = inputBox.value;
-    if(input.length) {
-        result = availableKeywords.filter((keyword)=>{
-            return keyword.toLowerCase().includes(input.toLowerCase());
-        });
-        console.log(result);
-        resultsList.classList.add("result-list-bg");
-    } else {
-        resultsBox.innerHTML = '';
-        resultsList.classList.remove("result-list-bg");
-    }
+let timeoutID;
+
+inputBox.addEventListener("input", (text) => {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout( async () => {
+        let result = [];
+        resultsList.innerHTML = "";
+        let input = text.target.value;
+
+        if(input.length > 8) {
+            const data = await getSearchResults(input);
+
+            resultsList.innerHTML = "";
+
+            for (let i = 0; i < 5; i++) {
+                if (data.docs.length > i) {
+                    result[i] = data.docs[i].title;
+                    resultsList.innerHTML += `
+                        <li class='book-result' name="${result[i]}">${result[i]}</li>
+                    `
+                } else {
+                    break;
+                }
+            }
+            console.log(data);
+            console.log(result);
+            resultsList.classList.add("result-list-bg");
+        
+            let bookTitles = document.getElementsByClassName("book-result");
+        
+            for (let i = 0; i < bookTitles.length; i++) {
+                bookTitles[i].addEventListener("click", () => {
+                    let title = bookTitles[i].getAttribute("name");
+                    inputBox.value = title;
+                    title = title.split(' ').join('+');
+                    window.location.href=`http://localhost:3000/search/?q=${title}`;
+                    console.log("CLICKED");
+                })
+            }
+        } else if (!input.length) {
+            resultsBox.innerHTML = '';
+            resultsList.classList.remove("result-list-bg");
+        }
+    }, 1000);
+})
+
+// inputBox.onkeyup = async function() {
+//     let result = [];
+//     resultsList.innerHTML = "";
+//     let input = inputBox.value;
+//     if(input.length > 8) {
+//         const data = await getSearchResults(input);
+
+//         resultsList.innerHTML = "";
+
+//         for (let i = 0; i < 5; i++) {
+//             if (data.docs.length > i) {
+//                 result[i] = data.docs[i].title;
+//                 resultsList.innerHTML += `
+//                     <li class='book-result' name="${result[i]}">${result[i]}</li>
+//                 `
+//             } else {
+//                 break;
+//             }
+//         }
+
+//         // result = availableKeywords.filter((keyword)=>{
+//         //     return keyword.toLowerCase().includes(input.toLowerCase());
+//         // });
+//         console.log(result);
+//         resultsList.classList.add("result-list-bg");
+
+//         // for (let i = 0; i < result.length; i++) {
+//         //     resultsList.innerHTML += `
+//         //         <li class='book-result' name="${result[i]}">${result[i]}</li>
+//         //     `
+//         // }
     
-    for (let i = 0; i < result.length; i++) {
-        console.log(`hi ${result[i]}`);
-        resultsList.innerHTML += `
-            <li class='book-result' name="${result[i]}">${result[i]}</li>
-        `
-    }
-
-    let bookTitles = document.getElementsByClassName("book-result");
-
-    for (let i = 0; i < bookTitles.length; i++) {
-        bookTitles[i].addEventListener("click", () => {
-            let title = bookTitles[i].getAttribute("name");
-            inputBox.value = title;
-            title = title.split(' ').join('+');
-            window.location.href=`http://localhost:3000/search/?q=${title}`;
-            console.log("CLICKED");
-        })
-    }
-}
+//         let bookTitles = document.getElementsByClassName("book-result");
+    
+//         for (let i = 0; i < bookTitles.length; i++) {
+//             bookTitles[i].addEventListener("click", () => {
+//                 let title = bookTitles[i].getAttribute("name");
+//                 inputBox.value = title;
+//                 title = title.split(' ').join('+');
+//                 window.location.href=`http://localhost:3000/search/?q=${title}`;
+//                 console.log("CLICKED");
+//             })
+//         }
+//     } else if (!input.length) {
+//         resultsBox.innerHTML = '';
+//         resultsList.classList.remove("result-list-bg");
+//     }
+// }
 
 function display(result) {
     const content = result.map((list)=>{
