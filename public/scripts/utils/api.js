@@ -54,6 +54,12 @@ export function getDesc(bookData) {
   return bookDesc;
 }
 
+export async function getTitle(editionKey) {
+  const editionData = await getEditionData(editionKey);
+
+  return editionData.title;
+}
+
 export async function getAuthor(workData) {
   let authorId = workData.authors[0].author.key;
   console.log(`author ID: ${authorId}`);

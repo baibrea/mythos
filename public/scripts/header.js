@@ -1,4 +1,4 @@
-import { getSearchResults } from "./utils/api.js";
+import { getSearchResults, getTitle } from "./utils/api.js";
 
 class WebsiteHeader extends HTMLElement {
     connectedCallback() {
@@ -99,6 +99,11 @@ const resultsBox = document.querySelector(".result-box");
 const resultsList = document.querySelector(".result-list");
 const inputBox = document.getElementById("input-box");
 
+export function passKey(editionKey) {
+    window.location.href = `http://localhost:3000/book/?q=${editionKey}`;
+    localStorage.setItem("editionKey", editionKey);
+}
+
 let timeoutID;
 
 inputBox.addEventListener("input", (text) => {
@@ -117,25 +122,25 @@ inputBox.addEventListener("input", (text) => {
                 if (data.docs.length > i) {
                     result[i] = data.docs[i].title;
                     resultsList.innerHTML += `
-                        <li class='book-result' name="${result[i]}">${result[i]}</li>
+                        <li class='book-result' name="${data.docs[i].edition_key[0]}">${result[i]}</li>
                     `
                 } else {
                     break;
                 }
             }
-            console.log(data);
-            console.log(result);
+
             resultsList.classList.add("result-list-bg");
         
             let bookTitles = document.getElementsByClassName("book-result");
         
             for (let i = 0; i < bookTitles.length; i++) {
-                bookTitles[i].addEventListener("click", () => {
-                    let title = bookTitles[i].getAttribute("name");
+                bookTitles[i].addEventListener("click", async () => {
+                    let editionKey = bookTitles[i].getAttribute("name");
+                    let title = await getTitle(editionKey);
                     inputBox.value = title;
                     title = title.split(' ').join('+');
-                    window.location.href=`http://localhost:3000/search/?q=${title}`;
-                    console.log("CLICKED");
+
+                    passKey(editionKey);
                 })
             }
         } else if (!input.length) {
