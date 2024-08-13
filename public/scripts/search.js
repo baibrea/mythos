@@ -25,7 +25,7 @@ async function listBooks(input) {
                 <img src="${getCover(data.docs[i].cover_i)}">
                 <div class="desc-container">
                     <p class="book-title">${data.docs[i].title}</p>
-                    <p class="book-author">by ${data.docs[i].author_name[0]}</p>
+                    <p class="book-author">by ${data.docs[i].author_name}</p>
                 </div>
             </a>
         `
