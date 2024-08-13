@@ -1,4 +1,4 @@
-import { getSearchResults, getTitle } from "./utils/api.js";
+import { getAuthor, getSearchResults, getTitle, getWorkData, getCover } from "./utils/api.js";
 
 class WebsiteHeader extends HTMLElement {
     connectedCallback() {
@@ -113,6 +113,7 @@ inputBox.addEventListener("input", (text) => {
         resultsList.innerHTML = "";
         let input = text.target.value;
 
+
         if(input.length > 5) {
             const data = await getSearchResults(`?q=${input}`);
 
@@ -121,8 +122,17 @@ inputBox.addEventListener("input", (text) => {
             for (let i = 0; i < 6; i++) {
                 if (data.docs.length > i) {
                     result[i] = data.docs[i].title;
+                    let workData = await getWorkData(data.docs[i].edition_key[0]);
+
                     resultsList.innerHTML += `
-                        <li class='book-result' name="${data.docs[i].edition_key[0]}">${result[i]}</li>
+                        <li class='book-result' name="${data.docs[i].edition_key[0]}">
+                            <img src="${getCover(workData.covers[0])}">
+                            <div>
+                                <p>${result[i]}</p>
+                                <p>${await getAuthor(workData)}</p>
+                            </div>
+                        </li>
+                        
                     `
                 } else {
                     break;
