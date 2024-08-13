@@ -221,22 +221,42 @@ body {
 }
 
 .book-result {
-    /* width: 60%; */
-    max-width: 600px;
-    text-align: center;
-    list-style: none;
-    border-radius: 3px;
-    padding: 15px 10px;
-    margin: 0px auto;
-    cursor: pointer;
-    /* font-weight: bold; */
-    align-items: center;
-    border-radius: 16px;
+  display: flex;
+  /* width: 60%; */
+  max-width: 600px;
+  list-style: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 0px auto;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 16px;
 }
 
 .book-result:hover{
   background: #e9f3ff;
   color: #595969;
+}
+
+.book-result img {
+  width: 50px;
+  height: auto;
+}
+
+.book-result div {
+  margin-left: 12px;
+}
+
+.result-title {
+  margin: 2px 0px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.result-author {
+  font-size: 14px;
+  margin: 0px;
+  text-align: left;
 }
 
 .close-img {

@@ -126,10 +126,10 @@ inputBox.addEventListener("input", (text) => {
 
                     resultsList.innerHTML += `
                         <li class='book-result' name="${data.docs[i].edition_key[0]}">
-                            <img src="${getCover(workData.covers[0])}">
+                            <img src="${cover}">
                             <div>
-                                <p>${result[i]}</p>
-                                <p>${await getAuthor(workData)}</p>
+                                <p class="result-title">${result[i]}</p>
+                                <p class="result-author">${await getAuthor(workData)}</p>
                             </div>
                         </li>
                         
