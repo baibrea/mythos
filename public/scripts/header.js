@@ -109,7 +109,6 @@ let timeoutID;
 inputBox.addEventListener("input", (text) => {
     clearTimeout(timeoutID);
     timeoutID = setTimeout( async () => {
-        let result = [];
         resultsList.innerHTML = "";
         let input = text.target.value;
 
@@ -118,11 +117,20 @@ inputBox.addEventListener("input", (text) => {
             const data = await getSearchResults(`?q=${input}`);
 
             resultsList.innerHTML = "";
+            let result = [];
+            
 
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 5; i++) {
                 if (data.docs.length > i) {
                     result[i] = data.docs[i].title;
                     let workData = await getWorkData(data.docs[i].edition_key[0]);
+
+                    let cover;
+                    if (Object.hasOwn(workData, 'covers')) {
+                        cover = getCover(workData.covers[0]);
+                    } else {
+                        cover = "/images/default-cover.png";
+                    }
 
                     resultsList.innerHTML += `
                         <li class='book-result' name="${data.docs[i].edition_key[0]}">
@@ -134,12 +142,11 @@ inputBox.addEventListener("input", (text) => {
                         </li>
                         
                     `
+                    resultsList.classList.add("result-list-bg");
                 } else {
                     break;
                 }
             }
-
-            resultsList.classList.add("result-list-bg");
         
             let bookTitles = document.getElementsByClassName("book-result");
         
