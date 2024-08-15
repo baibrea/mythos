@@ -81,7 +81,7 @@ if (searchClose) {
 
 const profileButton = document.querySelector(".profile-img");
 profileButton.addEventListener("click", () => {
-    window.location.href = "http://localhost:3000/profile";
+    window.location.href = "http://localhost:3000/register";
 })
 
 let availableKeywords = [

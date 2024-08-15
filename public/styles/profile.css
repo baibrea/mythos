@@ -1,0 +1,9 @@
+.overall-container {
+  /* display: flex; */
+  /* align-items: center; */
+  gap: 15px;
+  text-align: center;
+  margin: auto;
+  padding: auto;
+
+}
