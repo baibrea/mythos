@@ -60,6 +60,7 @@ customElements.define("website-header", WebsiteHeader);
 const searchButton = document.querySelector(".search-img");
 const searchClose = document.querySelector(".close-img");
 const searchContent = document.querySelector(".search");
+const inputBox = document.getElementById("input-box");
 
 if (searchButton) {
     searchButton.addEventListener("click", () => {
@@ -70,11 +71,13 @@ if (searchButton) {
 if (searchClose) {
     searchClose.addEventListener("click", () => {
         searchContent.classList.remove("show-search");
+        inputBox.value = "";
     })
 
     window.addEventListener("keydown", () => {
         if (event.keyCode === 27) {
             searchContent.classList.remove("show-search");
+            inputBox.value = "";
         }
     })
 }
@@ -82,7 +85,7 @@ if (searchClose) {
 const profileButton = document.querySelector(".profile-img");
 profileButton.addEventListener("click", () => {
     if(localStorage.getItem('authPage') === null) {
-        window.location.href = "http://localhost:3000/register";
+        window.location.href = "http://localhost:3000/login";
         console.log(localStorage.getItem('authPage'));
     }
     else {
@@ -109,7 +112,6 @@ let availableKeywords = [
 
 const resultsBox = document.querySelector(".result-box");
 const resultsList = document.querySelector(".result-list");
-const inputBox = document.getElementById("input-box");
 
 export function passKey(editionKey) {
     window.location.href = `http://localhost:3000/book/?q=${editionKey}`;

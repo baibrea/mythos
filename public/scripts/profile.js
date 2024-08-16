@@ -1,4 +1,5 @@
 const welcomeMessage = document.querySelector(".content-container");
+const signoutButton = document.querySelector(".sign-out");
 let registeredName = localStorage.getItem('name');
 let authPage = localStorage.getItem('authPage');
 let loginName = localStorage.getItem('LoginName');
@@ -17,3 +18,9 @@ else if(authPage === 'login') {
     <h2>${loginName}</h2>
   </div>`;
 }
+
+signoutButton.addEventListener("click", () => {
+  window.location.href = "http://localhost:3000/login";
+  localStorage.removeItem('authPage');
+  // window.location.href = "http://localhost:3000/login";
+})
