@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/register.css">
     <title>Register</title>
 </head>
 <body>
+  <website-header></website-header>
+
   <div class="container">
+    <h1>Register</h1>
     <form>
-      <label for="username">Username</label>
-      <input type="email" placeholder="Email" id="email" required>
+      <input class="username-input" type="text" placeholder="Username" id="name" required>
+      <input class="email-input" type="email" placeholder="Email" id="email" required>
+      <input class="password-input" type="password" placeholder="Password" id="password" required>
 
-      <label for="password">Password</label>
-      <input type="password" placeholder="Password" id="password" required>
-
-      <label for="name">Your Name: </label>
-      <input type="text" placeholder="What is your Name?" id="name" required>
-
-      <button type="submit" id="submit">Create Account</button>
+      <button class="submit-button" type="submit" id="submit">Create Account</button>
     </form>
+
+    <a href="./login" class="go-to-login">already have an account?</a>
   </div>
 
-  <script src="/scripts/utils/firebase.js" type="module"></script>
+  <script src="/scripts/register.js" type="module"></script>
+  <script type="module" src="/scripts/header.js"></script>
 </body>
 </html>
