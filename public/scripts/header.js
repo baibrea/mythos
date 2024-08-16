@@ -81,7 +81,14 @@ if (searchClose) {
 
 const profileButton = document.querySelector(".profile-img");
 profileButton.addEventListener("click", () => {
-    window.location.href = "http://localhost:3000/register";
+    if(localStorage.getItem('authPage') === null) {
+        window.location.href = "http://localhost:3000/register";
+        console.log(localStorage.getItem('authPage'));
+    }
+    else {
+        window.location.href = "http://localhost:3000/profile";
+        console.log(localStorage.getItem('authPage'));
+    }
 })
 
 let availableKeywords = [
