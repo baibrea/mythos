@@ -92,7 +92,7 @@ h1 {
     outline: none;
 }
 
-.submit-button {
+.submit {
     border: none;
     background-color: #d1bfe0;
     color: black;
@@ -106,7 +106,7 @@ h1 {
     transition: 0.3s;
 }
 
-.submit-button:hover {
+.submit:hover {
     background-color: #b2a0c0;
 }
 
