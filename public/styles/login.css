@@ -1,10 +1,10 @@
 body {
- font-family: "Quicksand";
- background-image: url("/images/wallpaper.jpeg");
- background-size: cover;
- background-repeat: no-repeat;
+    font-family: "Quicksand";
+    background-image: url("/images/wallpaper.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-
+   
 /* CSS for header */
 .divider {
     border: 2px solid #d1bfe0;
@@ -43,8 +43,6 @@ body {
 /* CSS for register container */
 .container {
     background-color: rgba(203, 181, 216, 0.2);
-    /* background-color: rgba(107, 91, 117, 0.2); */
-    /* background-color: rgba(232, 211, 245, 0.2); */
     backdrop-filter: blur(20px);
     border: 2px solid rgb(170, 170, 170);
     box-shadow: 0 0 34px rgb(129, 129, 129);
@@ -52,7 +50,7 @@ body {
     width: 500px;
     align-items: center;
     text-align: center;
-    margin: 135px auto;
+    margin: 176px auto;
     padding: 10px;
     padding-bottom: 40px;
     
@@ -116,7 +114,6 @@ h1 {
     text-align: center;
     color: white;
     margin-left: 116px;
-    transition: 0.3s;
 }
 
 .login-div a {
@@ -124,6 +121,7 @@ h1 {
     color: rgb(178, 145, 182);
     font-weight: bold;
     margin-left: 6px;
+    transition: 0.3s;
 }
 
 .login-div a:visited {
