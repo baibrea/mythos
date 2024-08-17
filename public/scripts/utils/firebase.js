@@ -18,38 +18,67 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// For profile name displaying in profile page
-
-// Submit
 export function login(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Inputs
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-  
-    // store name in localStorage
-    let registeredName = localStorage.getItem(`${email}`);
-    localStorage.setItem('LoginName', `${registeredName}`);
-    localStorage.setItem('authPage', 'login');
-  
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      console.log(user);
-      console.log(user.email);
-      alert("Logging in...");
-      // Going to profile page after creating account
-      window.location.href = "http://localhost:3000/profile"
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-      // ..
-    });
+  // Inputs
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  // store name in localStorage
+  let registeredName = localStorage.getItem(`${email}`);
+  localStorage.setItem('LoginName', `${registeredName}`);
+  localStorage.setItem('authPage', 'login');
+
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up
+    const user = userCredential.user;
+    console.log(user);
+    console.log(user.email);
+    alert("Logging in...");
+    // Going to profile page after creating account
+    window.location.href = "http://localhost:3000/profile"
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+    // ..
+  });
+}
+
+export function register(event) {
+  event.preventDefault();
+
+  // Inputs
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  // store name in localStorage
+  let name = document.getElementById("name").value;
+  localStorage.setItem('name', `${name}`);
+  localStorage.setItem('authPage', 'register');
+  // Storing name in local storage tied to email
+  localStorage.setItem(`${email}`, `${name}`);
+
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up
+    const user = userCredential.user;
+    console.log(user);
+    alert("Creating Account...");
+    // Going to profile page after creating account
+    window.location.href = "http://localhost:3000/profile"
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+    // ..
+  });
 }
 
 

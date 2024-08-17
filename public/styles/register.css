@@ -104,6 +104,7 @@ h1 {
     margin-right: 50px;
     box-shadow: 1px 1px 4px black;
     transition: 0.3s;
+    padding: 14px;
 }
 
 .submit:hover {
