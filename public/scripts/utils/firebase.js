@@ -16,11 +16,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log(user.email);
+    console.log(`logged in: ${user.email}`);
+  } else {
+    console.log("no user logged in");
   }
 });
 
@@ -37,9 +41,10 @@ export function login(event) {
   localStorage.setItem('authPage', 'login');
 
   signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+  .then((userCredentials) => {
     // Signed up
-    const user = userCredential.user;
+    const user = userCredentials.user;
+
     console.log(user);
     console.log(user.email);
     alert("Logging in...");
@@ -59,6 +64,7 @@ export function register(event) {
   event.preventDefault();
 
   // Inputs
+  const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -70,9 +76,10 @@ export function register(event) {
   localStorage.setItem(`${email}`, `${name}`);
 
   createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+  .then((userCredentials) => {
     // Signed up
-    const user = userCredential.user;
+    const user = userCredentials.user;
+
     console.log(user);
     alert("Creating Account...");
     // Going to profile page after creating account
@@ -87,8 +94,9 @@ export function register(event) {
   });
 }
 
-
-
-
-
-
+export function logout() {
+  auth.signOut().then(() => {
+    alert('Signed out');
+    console.log('Signed Out');
+  });
+}
