@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
+// import firebase from "firebase/compat/app";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,8 +19,27 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Get data
+const profileDataCollection = collection(db, 'user-data');
+getDocs(profileDataCollection).then(snapshot => {
+  snapshot.docs.forEach((doc) => {
+    console.log(doc.data())
+  })
+})
+.catch(err => {
+  console.log(err.message);
+})
+
+
+
+// db.collection('profile-data').get().then(snapshot => {
+//   console.log(snapshot.docs);
+// })
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
