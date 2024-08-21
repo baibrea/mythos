@@ -137,6 +137,22 @@ body {
     transition: 0.3s;
     transform: rotate(-6deg);
   }
+
+  .nav-icons button {
+    border: 2px solid #404050;
+    padding: 8px 24px;
+    background-color: transparent;
+    font-family: "Quicksand";
+    font-size: 18px;
+    transition: 0.3s;
+  }
+
+  .nav-icons button:hover {
+    cursor: pointer;
+    border: 2px solid #404050;
+    background-color: #404050;
+    color: #dad7e7;
+  }
   
   .search {
     position: fixed;
