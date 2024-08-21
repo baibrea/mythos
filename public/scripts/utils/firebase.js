@@ -2,7 +2,7 @@
 // import firebase from "firebase/compat/app";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, getDocs, collection, addDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, getDoc, getDocs, collection, addDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,14 +38,6 @@ getDocs(profileDataCollection).then(snapshot => {
 // db.collection('profile-data').get().then(snapshot => {
 //   console.log(snapshot.docs);
 // })
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log(`logged in: ${user.email}`);
-  } else {
-    console.log("no user logged in");
-  }
-});
 
 export function login(event) {
   event.preventDefault();
@@ -119,12 +111,41 @@ export function logout() {
   });
 }
 
+export function checkForUser() {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  })
+}
+
+export function getUser() {
+  const user = auth.currentUser;
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user.email);
+      getDoc(doc(db, "user-data", user.email)).then(docSnap => {
+        if (docSnap.exists()) {
+          console.log(docSnap);
+          return docSnap.data();
+        }
+      })
+    } else {
+      return null;
+    }
+  })
+
+}
+
 export function addProfile() {
   const myUsername = document.getElementById("username").value;
   const myEmail = document.getElementById("email").value;
   const myPassword = document.getElementById("password").value;
 
-  setDoc(doc(db, "user-data", myUsername), {
+  setDoc(doc(db, "user-data", myEmail), {
     username: myUsername,
     email: myEmail,
     password: myPassword,
