@@ -17,16 +17,15 @@ body {
     justify-content: center;
     /* position: sticky; */
     /* top: 0px; */
-    width: 75%;
-    margin-left: 12.5%;
+    /* width: 75%; */
+    /* margin-left: 12.5%; */
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .divider {
-    /* border: 2px solid #7E9273; */
     border: 2px solid #404050;
     border-radius: 8px;
-    width: 75%;
-    /* margin: auto; */
     min-width: 600px;
     margin-top: 0px;
   }

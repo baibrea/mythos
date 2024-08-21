@@ -109,6 +109,7 @@ h1 {
 
 .submit:hover {
     background-color: #b2a0c0;
+    cursor: pointer;
 }
 
 .login-div {
