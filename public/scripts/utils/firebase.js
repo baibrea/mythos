@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 // import firebase from "firebase/compat/app";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,8 +34,6 @@ getDocs(profileDataCollection).then(snapshot => {
 .catch(err => {
   console.log(err.message);
 })
-
-
 
 // db.collection('profile-data').get().then(snapshot => {
 //   console.log(snapshot.docs);
@@ -90,11 +88,10 @@ export function register(event) {
   const password = document.getElementById("password").value;
 
   // store name in localStorage
-  let name = document.getElementById("name").value;
-  localStorage.setItem('name', `${name}`);
+  localStorage.setItem('name', `${username}`);
   localStorage.setItem('authPage', 'register');
   // Storing name in local storage tied to email
-  localStorage.setItem(`${email}`, `${name}`);
+  localStorage.setItem(`${email}`, `${username}`);
 
   createUserWithEmailAndPassword(auth, email, password)
   .then((userCredentials) => {
