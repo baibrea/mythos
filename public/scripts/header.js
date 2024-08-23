@@ -28,7 +28,6 @@ class WebsiteHeader extends HTMLElement {
                     </ul>
 
                     <div class="nav-icons">
-                        <img src="/images/search-interface-symbol.png" class="search-img">
                     </div>
                 </nav>
 
@@ -59,40 +58,45 @@ customElements.define("website-header", WebsiteHeader);
 
 const navIcons = document.querySelector(".nav-icons");
 
-if (checkForUser()) {
-    navIcons.innerHTML += `
-        <img src="/images/gnome.png" class="profile-img">    
-    `
-
-    const profileButton = document.querySelector(".profile-img");
-
-    profileButton.addEventListener("click", () => {
-        if(localStorage.getItem('authPage') === null) {
-            window.location.href = "http://localhost:3000/login";
-            console.log(localStorage.getItem('authPage'));
-        }
-        else {
-            window.location.href = "http://localhost:3000/profile";
-            console.log(localStorage.getItem('authPage'));
-        }
-    })
-} else {
-    console.log("no user");
-    navIcons.innerHTML += `
-        <button class="login-button">Login</button>
-    `
-    const loginButton = document.querySelector(".login-button")
-
-    loginButton.addEventListener("click", () => {
-        if(localStorage.getItem('authPage') === null) {
-            window.location.href = "http://localhost:3000/login";
-            console.log(localStorage.getItem('authPage'));
-        }
-        else {
-            window.location.href = "http://localhost:3000/profile";
-            console.log(localStorage.getItem('authPage'));
-        }
-    })
+export function changeAccButton(state) {
+    if (state === 1) {
+        console.log("user");
+        navIcons.innerHTML = `
+            <img src="/images/search-interface-symbol.png" class="search-img">
+            <img src="/images/gnome.png" class="profile-img">    
+        `
+    
+        const profileButton = document.querySelector(".profile-img");
+    
+        profileButton.addEventListener("click", () => {
+            if(localStorage.getItem('authPage') === null) {
+                window.location.href = "http://localhost:3000/login";
+                console.log(localStorage.getItem('authPage'));
+            }
+            else {
+                window.location.href = "http://localhost:3000/profile";
+                console.log(localStorage.getItem('authPage'));
+            }
+        })
+    } else {
+        console.log("no user");
+        navIcons.innerHTML = `
+            <img src="/images/search-interface-symbol.png" class="search-img">
+            <button class="login-button">Login</button>
+        `
+        const loginButton = document.querySelector(".login-button")
+    
+        loginButton.addEventListener("click", () => {
+            if(localStorage.getItem('authPage') === null) {
+                window.location.href = "http://localhost:3000/login";
+                console.log(localStorage.getItem('authPage'));
+            }
+            else {
+                window.location.href = "http://localhost:3000/profile";
+                console.log(localStorage.getItem('authPage'));
+            }
+        })
+    }
 }
 
 const searchButton = document.querySelector(".search-img");
@@ -207,16 +211,3 @@ inputBox.addEventListener("input", (text) => {
         }
     }, 1000);
 })
-
-function display(result) {
-    const content = result.map((list)=>{
-        return"<li class='book-title' onclick=selectInput(this)>" + list + "</li>";
-    });
-
-    resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
-}
-
-function selectInput(list) {
-    inputBox.value = list.innerHTML;
-    resultsBox.innerHTML = ' ';
-}

@@ -3,6 +3,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore, getDoc, getDocs, collection, addDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { changeAccButton } from "../header.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,6 +39,15 @@ getDocs(profileDataCollection).then(snapshot => {
 // db.collection('profile-data').get().then(snapshot => {
 //   console.log(snapshot.docs);
 // })
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log(user.email);
+    changeAccButton(1);
+  } else {
+    changeAccButton(0);
+  }
+})
 
 export function login(event) {
   event.preventDefault();
@@ -106,24 +116,11 @@ export function register(event) {
 
 export function logout() {
   auth.signOut().then(() => {
-    alert('Signed out');
-    console.log('Signed Out');
+    alert('Signing out...');
   });
 }
 
-export function checkForUser() {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
-  })
-}
-
 export function getUser() {
-  const user = auth.currentUser;
-
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log(user.email);
