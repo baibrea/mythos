@@ -1,5 +1,4 @@
 import { getAuthor, getSearchResults, getTitle, getWorkData, getCover } from "./utils/api.js";
-import { checkForUser } from "./utils/firebase.js";
 
 class WebsiteHeader extends HTMLElement {
     connectedCallback() {
