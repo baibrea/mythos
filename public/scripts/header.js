@@ -27,6 +27,7 @@ class WebsiteHeader extends HTMLElement {
                     </ul>
 
                     <div class="nav-icons">
+                        <img src="/images/search-interface-symbol.png" class="search-img">
                     </div>
                 </nav>
 
@@ -55,7 +56,7 @@ class WebsiteHeader extends HTMLElement {
 
 customElements.define("website-header", WebsiteHeader);
 
-const navIcons = document.querySelector(".nav-icons");
+let navIcons = document.querySelector(".nav-icons");
 
 export function changeAccButton(state) {
     if (state === 1) {
@@ -96,6 +97,33 @@ export function changeAccButton(state) {
             }
         })
     }
+    const searchButton = document.querySelector(".search-img");
+    const searchClose = document.querySelector(".close-img");
+    const searchContent = document.querySelector(".search");
+    const inputBox = document.getElementById("input-box");
+    
+    if (searchButton) {
+        searchButton.addEventListener("click", () => {
+            searchContent.classList.add("show-search");
+            console.log("search clicked");
+        })
+    }
+    
+    if (searchClose) {
+        searchClose.addEventListener("click", () => {
+            searchContent.classList.remove("show-search");
+            inputBox.value = "";
+            console.log("search closed");
+        })
+    
+        window.addEventListener("keydown", () => {
+            if (event.keyCode === 27) {
+                searchContent.classList.remove("show-search");
+                inputBox.value = "";
+                console.log("search exited")
+            }
+        })
+    }
 }
 
 const searchButton = document.querySelector(".search-img");
@@ -114,12 +142,14 @@ if (searchClose) {
     searchClose.addEventListener("click", () => {
         searchContent.classList.remove("show-search");
         inputBox.value = "";
+        console.log("search closed");
     })
 
     window.addEventListener("keydown", () => {
         if (event.keyCode === 27) {
             searchContent.classList.remove("show-search");
             inputBox.value = "";
+            console.log("search exited")
         }
     })
 }
