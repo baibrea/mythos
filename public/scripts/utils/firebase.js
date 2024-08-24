@@ -2,7 +2,7 @@
 // import firebase from "firebase/compat/app";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, getDoc, getDocs, collection, addDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, getDoc, getDocs, collection, addDoc, setDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 import { changeAccButton } from "../header.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,26 +24,31 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 const db = getFirestore(app);
+let userData = "TImsim";
 
-// Get data
-const profileDataCollection = collection(db, 'user-data');
-getDocs(profileDataCollection).then(snapshot => {
-  snapshot.docs.forEach((doc) => {
-    console.log(doc.data())
-  })
-})
-.catch(err => {
-  console.log(err.message);
-})
-
-// db.collection('profile-data').get().then(snapshot => {
-//   console.log(snapshot.docs);
-// })
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log(user.email);
     changeAccButton(1);
+    const profileDataCollection = collection(db, 'user-data');
+    getDocs(profileDataCollection).then(snapshot => {
+      snapshot.docs.forEach((doc) => {
+        const data = doc.data();
+        if(user.email === data.email) {
+          userData = doc.data();
+          console.log(data);
+          console.log(doc.data().email);
+          console.log(data.username);
+          console.log(data.password);
+
+        }
+        // console.log(data.email);
+      });
+    })
+    .catch(err => {
+      console.log(err.message);
+    });    
   } else {
     changeAccButton(0);
   }
@@ -120,23 +125,6 @@ export function logout() {
   });
 }
 
-export function getUser() {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log(user.email);
-      getDoc(doc(db, "user-data", user.email)).then(docSnap => {
-        if (docSnap.exists()) {
-          console.log(docSnap);
-          return docSnap.data();
-        }
-      })
-    } else {
-      return null;
-    }
-  })
-
-}
-
 export function addProfile() {
   const myUsername = document.getElementById("username").value;
   const myEmail = document.getElementById("email").value;
@@ -147,6 +135,33 @@ export function addProfile() {
     email: myEmail,
     password: myPassword,
   })
+}
+
+export async function getUser() {
+  return new Promise((resolve, reject) => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const profileDataCollection = collection(db, 'user-data');
+        try {
+          const snapshot = await getDocs(profileDataCollection);
+          let userData = null;
+          snapshot.docs.forEach((doc) => {
+            const data = doc.data();
+            if (user.email === data.email) {
+              userData = data;
+            }
+          });
+          resolve(userData);
+        } catch (error) {
+          reject(error);
+        }
+      } else {
+        resolve(null);
+      }
+    });
+  });
+}
+
 
 export function deleteProfile(userid) {
 
