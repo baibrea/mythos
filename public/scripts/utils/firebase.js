@@ -147,4 +147,17 @@ export function addProfile() {
     email: myEmail,
     password: myPassword,
   })
+
+export function deleteProfile(userid) {
+
+  getDocs(profileDataCollection).then(snapshot => {
+    snapshot.docs.forEach((doc) => {
+      console.log(doc.data());
+    })
+  })
+  const  docRef = doc(db, 'user-data', userid);
+
+  deleteDoc(docRef).then(() => {
+    profileToDelete.reset();
+  })
 }

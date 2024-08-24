@@ -1,10 +1,12 @@
-import { logout } from "./utils/firebase.js";
+import { logout, deleteProfile } from "./utils/firebase.js";
 
 const welcomeMessage = document.querySelector(".content-container");
 const signoutButton = document.querySelector(".sign-out");
 let registeredName = localStorage.getItem('name');
 let authPage = localStorage.getItem('authPage');
-let loginName = localStorage.getItem('LoginName');
+// let loginName = localStorage.getItem('LoginName');
+
+const deleteAccountButton = document.querySelector("delete-account-btn");
 
 if(authPage === 'register' || authPage === 'login') {
   welcomeMessage.innerHTML = `
@@ -27,3 +29,11 @@ signoutButton.addEventListener("click", (e) => {
   logout();
   window.location.href = "http://localhost:3000/login";
 })
+
+
+// deleteAccountButton.addEventListener("click", (e) => {
+//   e.preventDefault();
+
+//   // This will delete what the current profile is...
+//   deleteProfile(deleteAccountButton);
+// })
