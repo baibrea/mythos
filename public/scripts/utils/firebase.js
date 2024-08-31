@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 // import firebase from "firebase/compat/app";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, deleteUser } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore, getDoc, getDocs, collection, addDoc, setDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 import { changeAccButton } from "../header.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -121,7 +121,7 @@ export function register(event) {
 
 export function logout() {
   auth.signOut().then(() => {
-    alert('Signing out...');
+    // alert('Signing out...');
   });
 }
 
@@ -163,16 +163,12 @@ export async function getUser() {
 }
 
 
-export function deleteProfile(userid) {
+export async function deleteProfile(userid) {
 
-  getDocs(profileDataCollection).then(snapshot => {
-    snapshot.docs.forEach((doc) => {
-      console.log(doc.data());
-    })
-  })
-  const  docRef = doc(db, 'user-data', userid);
+  await deleteDoc(doc(db, 'user-data', userid));
+  const auth = getAuth();
+  const user = auth.currentUser; 
+  await deleteUser(user);
 
-  deleteDoc(docRef).then(() => {
-    profileToDelete.reset();
-  })
+
 }
